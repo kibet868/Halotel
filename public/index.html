@@ -1,3 +1,10 @@
+Here is the fully updated `public/index.html`. 
+
+I have updated the WhatsApp floating button to be much more visible (larger, with a pulsing animation and a text bubble saying **"WhatsApp Me"** in Swahili). It is positioned to always float in the bottom right corner.
+
+Replace your entire `public/index.html` with this:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -258,27 +265,53 @@
     .waiting-screen h2 { font-size: 1.5rem; color: var(--halotel-dark); margin-bottom: 10px; font-weight: 800;}
     .waiting-screen p { color: var(--text-muted); line-height: 1.5; }
 
-    /* --- WHATSAPP FLOATING BUTTON --- */
-    .whatsapp-float {
+    /* --- WHATSAPP FLOATING BUTTON (HIGHLY VISIBLE) --- */
+    .whatsapp-container {
       position: fixed;
       bottom: 25px;
       right: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+    }
+    
+    .whatsapp-text {
+      background: #fff;
+      color: #333;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      animation: floatText 2s infinite alternate;
+    }
+
+    .whatsapp-float {
       background-color: var(--whatsapp-green);
       color: #fff;
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 1000;
+      font-size: 2.2rem;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
       text-decoration: none;
       transition: transform 0.2s;
+      animation: pulseGreen 2s infinite;
     }
-    .whatsapp-float:active {
-      transform: scale(0.9);
+    .whatsapp-float:active { transform: scale(0.9); }
+
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    @keyframes floatText {
+      from { transform: translateY(0); }
+      to { transform: translateY(-5px); }
     }
 
     /* Utilities */
@@ -289,10 +322,14 @@
 </head>
 <body>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/254781655660?text=Habari%2C%20nahitaji%20msaada%20kuhusu%20mkopo%20wa%20Halotel" target="_blank" class="whatsapp-float">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
+<!-- Highly Visible WhatsApp Floating Button -->
+<div class="whatsapp-container">
+  <div class="whatsapp-text">Wasiliana Nami</div>
+  <a href="https://wa.me/254781655660?text=Habari%2C%20nahitaji%20msaada%20kuhusu%20mkopo%20wa%20Halotel" target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/254114622868?text=Habari%2C%20nahitaji%20msaada%20kuhusu%20mkopo%20wa%20Halotel" target="_blank"
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</div>
 
 <div class="app-wrapper">
   <!-- Navbar -->
@@ -825,3 +862,4 @@
 </script>
 </body>
 </html>
+```
